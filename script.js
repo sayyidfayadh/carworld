@@ -12,12 +12,14 @@ function storeRecord(){
 
   }
   else{
+
     localStorage.setItem(car.key,JSON.stringify(car))
     alert("car added successfully")
   }
 }
 function retrieveRecord(){
   let keys=key2.value;
+  if(keys in localStorage){
  let car=JSON.parse(localStorage.getItem(keys))
   result.innerHTML=`<div class="card" style="width: 18rem;">
   <ul class="list-group list-group-flush">
@@ -27,12 +29,22 @@ function retrieveRecord(){
     <li class="list-group-item">${car.key}</li>
   </ul>
 </div>`
+  }
+  else{
+    alert("no key found")
+  }
 
 }
 function clearRecord(){
-  key3=key3.value;
-  localStorage.removeItem(key3)
+  if(key3.value in localStorage){
+  localStorage.removeItem(key3.value)
+  alert(`car removed`)
+}
+else{
+  alert("no key found")
+}
 }
 function clearAll(){
   localStorage.clear();
+  alert("cleared all record")
 }
